@@ -1,8 +1,3 @@
-*,
-*:before,
-*:after {
-	box-sizing: border-box;
-}
 
 /**
  * Accordion container element
@@ -86,10 +81,8 @@
  * Safari + VO to function correctly, if there
  * are multiple elements (wrapper spans) to layout
  * text nodes within the accordion button.
-
 	-- This is not needed if a button only contains text
 	   and no other child nodes wrapping the text --
-
 .accordion__trigger > * {
 	pointer-events: none;
 }

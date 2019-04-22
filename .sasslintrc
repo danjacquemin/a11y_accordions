@@ -1,0 +1,4 @@
+{
+	files:
+		include: './build/src-+(ets|styleguide)/**/*.s+(a|c)ss'
+}
