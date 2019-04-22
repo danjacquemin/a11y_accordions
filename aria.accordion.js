@@ -200,7 +200,7 @@
 		var targetID;
 		var targetState;
 		var newButton;
-		var buttonText;
+		// var buttonText; // removed to allow childNodes in button contet
 		var i;
 
 		for ( i = 0; i < headings.length; i++ ) {
@@ -210,11 +210,11 @@
 
 			// setup new heading buttons
 			newButton  = doc.createElement('button');
-			buttonText = heading.textContent;
-			// clear out the heading's content
-			heading.innerHTML = '';
-			// provide the heading with a class for styling
-			heading.classList.add(widgetHeadingClass);
+			// buttonText = heading.textContent;
+         headingNodes = heading.cloneNode(true); // clone the heading contents before wiping
+
+			heading.innerHTML = ''; // clear out the heading's content
+			heading.classList.add(widgetHeadingClass); // provide the heading with a class for styling
 
 			newButton.setAttribute('type', 'button');
 			newButton.setAttribute('aria-controls', targetID);
@@ -245,7 +245,11 @@
 
 			// Add the Button & previous heading text
 			heading.appendChild(newButton);
-			newButton.appendChild(doc.createTextNode(buttonText));
+			// newButton.appendChild(doc.createTextNode(buttonText));
+
+         while( headingNodes.childNodes.length > 0 ) {         // loop thru the cloned heading content
+            newButton.appendChild(headingNodes.childNodes[0]); // and add the node to the newButton
+         }
 		}
 	}; // ARIAaccordion.createButton
 
